@@ -10,6 +10,7 @@ app.get("/", (req, res) => {
 
 app.get("/:ticker", async (req, res) => {
   const { ticker } = req.params;
+  console.log(`Requesting ${ticker} data`);
   const { key } = req.query;
 
   if (!ticker || !key) {
