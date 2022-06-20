@@ -43,6 +43,7 @@ app.get("/:ticker", async (req, res) => {
           return { prices };
         }
         if (type === "key-statistics") {
+          // list of required metrics
           const metrics = [
             "Market Cap (intraday)",
             "Trailing P/E",
