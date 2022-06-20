@@ -2,6 +2,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const app = require("express")();
 const port = process.env.PORT || 8008;
+app.use(require("cors")());
 
 app.get("/", (req, res) => {
   res.status(200).send("<h1>Stock Data API</h1>");
