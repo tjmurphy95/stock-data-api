@@ -1,8 +1,9 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const app = require("express")();
+const cors = require("cors");
 const port = process.env.PORT || 8008;
-app.use(require("cors")());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.status(200).send("<h1>Stock Data API</h1>");
@@ -11,9 +12,9 @@ app.get("/", (req, res) => {
 app.get("/:ticker", async (req, res) => {
   const { ticker } = req.params;
   console.log(`Requesting ${ticker} data`);
-  const { key } = req.query;
+  //const { key } = req.query;
 
-  if (!ticker || !key) {
+  if (!ticker) {
     return res
       .status(400)
       .send({ message: "please provide api key and ticker" });
@@ -72,6 +73,7 @@ app.get("/:ticker", async (req, res) => {
             "Total Debt/Equity (mrq)",
             "Operating Cash Flow (ttm)",
           ];
+          // selector to get relevant data from website
           const stats = $(
             'section[data-test="qsp-statistics"] > div:nth-child(3) tr'
           )
